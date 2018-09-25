@@ -23,12 +23,12 @@ public class TestSynchronized {
                 new LinkedBlockingQueue<Runnable>(1024), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
 
         singleThreadPool.execute(() -> System.out.println(Thread.currentThread().getName()));
-        singleThreadPool.execute(new ProducterSynchronized());
+        singleThreadPool.execute(new ProducerSynchronized());
         singleThreadPool.execute(new ConsumerSynchronized());
         singleThreadPool.shutdown();
 
         // 显示创建线程
-//        new Thread( new ProducterSynchronized()).start();
+//        new Thread( new ProducerSynchronized()).start();
 //        new Thread( new ConsumerSynchronized()).start();
 
     }
