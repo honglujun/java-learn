@@ -2,6 +2,7 @@ package com.java.learn.thread.waitandnotify;
 
 /**
  * @Description:
+ * 多线程循环打印ABC
  * @author: Acer
  * @Date: 2018-09-21 16:38
  */
