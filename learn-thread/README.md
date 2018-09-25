@@ -16,7 +16,7 @@ notify(): 该方法会唤醒因为调用对象的wait()而等待的线程，其�
  
 notifyAll()则是唤醒所有等待的线程。
 
-waitandnotify包下的类是：两个线程交替打印A，B，共打印10次wait
+waitandnotify包下的类是：两个线程交替打印A，B，共打印10次
 ## 二、lock：使用ReentrantLock
 **`除了wait()和notify()协作完成线程同步之外，使用Lock也可以完成同样的目的。`**
  
