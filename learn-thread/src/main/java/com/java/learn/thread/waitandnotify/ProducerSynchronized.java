@@ -13,7 +13,7 @@ public class ProducerSynchronized implements Runnable {
         while (count > 0) {
             synchronized (TestSynchronized.obj) {
 
-                //System.out.print("count = " + count);
+                // System.out.print("count = " + count) ;
                 System.out.print("A");
                 count--;
                 TestSynchronized.obj.notify();
