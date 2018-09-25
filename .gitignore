@@ -1,6 +1,19 @@
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+
 /target/
 .project
 .settings
 target
 .classpath
 .iml
+.idea
+*.iml
+out
+gen
+.idea/
+java-learn.iml
+learn-httpclient/learn-httpclient.iml
+learn-thread/learn-thread.iml
