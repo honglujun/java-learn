@@ -15,11 +15,6 @@ public class TestSynchronized {
 
     public static void main(String[] args) {
 
-        // 显示创建线程
-//        new Thread( new ProducterSynchronized()).start();
-//        new Thread( new ConsumerSynchronized()).start();
-
-
         // 线程池创建线程
         ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
                 .setNameFormat("demo-pool-%d").build();
@@ -31,6 +26,10 @@ public class TestSynchronized {
         singleThreadPool.execute(new ProducterSynchronized());
         singleThreadPool.execute(new ConsumerSynchronized());
         singleThreadPool.shutdown();
+
+        // 显示创建线程
+//        new Thread( new ProducterSynchronized()).start();
+//        new Thread( new ConsumerSynchronized()).start();
 
     }
 }

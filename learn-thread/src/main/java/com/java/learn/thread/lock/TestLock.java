@@ -22,11 +22,6 @@ public class TestLock {
         ConsumerLock consumerLock = new ConsumerLock(lock);
         ProducterLock producterLock = new ProducterLock(lock);
 
-        // 显示创建线程
-//        new Thread(consumerLock).start();
-//        new Thread(producterLock).start();
-
-
         // 线程池创建线程
         ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
                 .setNameFormat("demo-pool-%d").build();
@@ -39,6 +34,10 @@ public class TestLock {
         singleThreadPool.execute(producterLock);
 
         singleThreadPool.shutdown();
+
+        // 显示创建线程
+//        new Thread(consumerLock).start();
+//        new Thread(producterLock).start();
 
     }
 }
