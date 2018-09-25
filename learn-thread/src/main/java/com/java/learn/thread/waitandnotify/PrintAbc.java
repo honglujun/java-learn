@@ -6,7 +6,7 @@ package com.java.learn.thread.waitandnotify;
  * @author: Acer
  * @Date: 2018-09-21 16:38
  */
-public class ABC {
+public class PrintAbc {
     public static class ThreadPrinter implements Runnable {
         private String name;
         private Object prev;
