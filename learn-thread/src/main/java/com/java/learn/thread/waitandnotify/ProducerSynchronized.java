@@ -5,7 +5,7 @@ package com.java.learn.thread.waitandnotify;
  * @author: Acer
  * @Date: 2018-09-21 12:52
  */
-public class ProducterSynchronized implements Runnable {
+public class ProducerSynchronized implements Runnable {
 
     @Override
     public void run() {
