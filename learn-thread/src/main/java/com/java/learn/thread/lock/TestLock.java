@@ -20,7 +20,7 @@ public class TestLock {
         Lock lock = new ReentrantLock();
 
         ConsumerLock consumerLock = new ConsumerLock(lock);
-        ProducterLock producterLock = new ProducterLock(lock);
+        ProducerLock producerLock = new ProducerLock(lock);
 
         // 线程池创建线程
         ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
@@ -31,13 +31,13 @@ public class TestLock {
 
         singleThreadPool.execute(() -> System.out.println(Thread.currentThread().getName()));
         singleThreadPool.execute(consumerLock);
-        singleThreadPool.execute(producterLock);
+        singleThreadPool.execute(producerLock);
 
         singleThreadPool.shutdown();
 
         // 显示创建线程
 //        new Thread(consumerLock).start();
-//        new Thread(producterLock).start();
+//        new Thread(producerLock).start();
 
     }
 }

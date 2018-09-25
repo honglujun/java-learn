@@ -7,10 +7,10 @@ import java.util.concurrent.locks.Lock;
  * @author: Acer
  * @Date: 2018-09-21 12:52
  */
-public class ProducterLock implements Runnable {
+public class ProducerLock implements Runnable {
     private Lock lock;
 
-    public ProducterLock(Lock lock) {
+    public ProducerLock(Lock lock) {
         this.lock = lock;
     }
 
