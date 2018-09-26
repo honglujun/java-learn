@@ -16,7 +16,7 @@ public class ConsumerLock implements Runnable {
 
     @Override
     public void run() {
-        int count = 100;
+        int count = 10;
         while (count > 0) {
             try {
                 lock.lock();

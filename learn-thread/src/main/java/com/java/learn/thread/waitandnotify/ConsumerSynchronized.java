@@ -9,7 +9,7 @@ public class ConsumerSynchronized implements Runnable {
     @Override
     public void run() {
 
-        int count = 100;
+        int count = 10;
         while (count > 0) {
             synchronized (TestSynchronized.obj) {
                 System.out.print("B");
