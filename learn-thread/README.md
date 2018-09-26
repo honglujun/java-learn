@@ -45,4 +45,7 @@ ReentrantLock 与synchronized有相同的并发性和内存语义，还包含了
 ### 6.SingletonDemo6  
 枚举（这个有点看不懂）
 ### 7.SingletonDemo7 
-懒汉模式（双重校验锁） 
+懒汉模式（双重校验锁）
+### 8.ThreeSingleton
+控制生成3个单例  
+单例模式是为了控制在运行期间，某些类的实例数目只能有一个。如果你想要控制多个，可以利用 Map 来帮助缓存多个实   
