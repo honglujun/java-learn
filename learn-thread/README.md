@@ -29,4 +29,20 @@ ReentrantLock 与synchronized有相同的并发性和内存语义，还包含了
 在并发量比较小的情况下，使用synchronized是个不错的选择，但是在并发量比较高的情况下，其性能下降很严重，此时ReentrantLock是个不错的方案。
 ## 三、singleton:单例模式（饿汉模式、懒汉模式）
 **懒汉式单例模式：在类加载时不初始化。**  
-**饿汉式单例模式：在类加载时就完成了初始化，所以类加载比较慢，但获取对象的速度快。**  
+**饿汉式单例模式：在类加载时就完成了初始化，所以类加载比较慢，但获取对象的速度快。** 
+### 1.SingletonDemo1  
+懒汉模式（线程不安全）
+### 2.SingletonDemo2  
+懒汉模式（线程安全）
+### 3.SingletonDemo3  
+饿汉模式
+### 4.SingletonDemo4  
+饿汉模式(变种)  
+用静态代码块
+### 5.SingletonDemo5
+静态内部类(线程安全)    
+这种方式同样利用了classloder的机制来保证初始化instance时只有一个线程，它跟第三种和第四种方式不同的是（很细微的差别）：第三种和第四种方式是只要Singleton类被装载了，那么instance就会被实例化（没有达到lazy loading效果），而这种方式是Singleton类被装载了，instance不一定被初始化。因为SingletonHolder类没有被主动使用，只有显示通过调用getInstance方法时，才会显示装载SingletonHolder类，从而实例化instance。想象一下，如果实例化instance很消耗资源，我想让他延迟加载，另外一方面，我不希望在Singleton类加载时就实例化，因为我不能确保Singleton类还可能在其他的地方被主动使用从而被加载，那么这个时候实例化instance显然是不合适的。这个时候，这种方式相比第三和第四种方法就显得更合理 
+### 6.SingletonDemo6  
+枚举（这个有点看不懂）
+### 7.SingletonDemo7 
+懒汉模式（双重校验锁） 
