@@ -1,4 +1,4 @@
-package com.java.learn.httpclient;
+package com.java.learn.tool;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.List;
  * @param <E>
  * @author Acer
  */
-public class BusList<E> extends ArrayList<E> {
+public class BusListTools<E> extends ArrayList<E> {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,7 +33,7 @@ public class BusList<E> extends ArrayList<E> {
      * @param classF    属性class类
      */
     public <F> List<F> getElementFieldAllOfList(String FieldName, Class<F> classF) throws Exception {
-        List<F> resultList = new BusList<F>();
+        List<F> resultList = new BusListTools<F>();
         for (E element : this) {
             Class<? extends Object> classE = element.getClass();
             @SuppressWarnings("unchecked")
@@ -65,7 +65,7 @@ public class BusList<E> extends ArrayList<E> {
      * @param match 实现匹配
      */
     public List<E> getElementForMatch(AbstractMatch match) {
-        List<E> resultList = new BusList<E>();
+        List<E> resultList = new BusListTools<E>();
         for (E element : this) {
             if (match.matchElement(element)) {
                 resultList.add(element);
