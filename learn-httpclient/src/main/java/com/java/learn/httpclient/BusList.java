@@ -48,23 +48,26 @@ public class BusList<E> extends ArrayList<E> {
     /**
      * 内部匹配类
      */
-    public abstract class Macth {
+    public abstract class AbstractMatch {
         /**
          * 匹配元素
+         *
+         * @param element
+         * @return
          */
-        public abstract boolean macthElement(E element);
+        public abstract boolean matchElement(E element);
     }
 
 
     /**
      * 根据匹配条件生成新的list
      *
-     * @param business 实现匹配
+     * @param match 实现匹配
      */
-    public List<E> getElementForMatch(Macth macth) {
+    public List<E> getElementForMatch(AbstractMatch match) {
         List<E> resultList = new BusList<E>();
         for (E element : this) {
-            if (macth.macthElement(element)) {
+            if (match.matchElement(element)) {
                 resultList.add(element);
             }
         }
