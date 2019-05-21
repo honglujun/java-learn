@@ -12,6 +12,7 @@
     <modules>
         <module>learn-thread</module>
         <module>learn-httpclient</module>
+        <module>learn-thinkingjava</module>
     </modules>
 
 </project>

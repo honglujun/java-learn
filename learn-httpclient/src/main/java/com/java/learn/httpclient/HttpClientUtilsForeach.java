@@ -1,7 +1,5 @@
 package com.java.learn.httpclient;
 
-import com.ycky.app.core.constant.Constants;
-import com.ycky.app.util.SecurityUtil;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
 import org.apache.commons.httpclient.NameValuePair;
@@ -31,6 +29,9 @@ import java.util.List;
  * @Version 1.0
  */
 public class HttpClientUtilsForeach {
+    private static final String DEFAULT_ALP_DIGEST_NAME = "default_alp_digest_name";
+    private static final String DEFAULT_ALP_TIMESTAMP_NAME = "default_alp_timestamp_name";
+
     private static MultiThreadedHttpConnectionManager connectionManager = new MultiThreadedHttpConnectionManager();
 
 
@@ -191,15 +192,16 @@ public class HttpClientUtilsForeach {
      * @Description: (设置验证参数)
      */
     private List<NameValuePair> getCheckParam(String params) {
-        String digest = SecurityUtil.getDigest(params + APP_KEY + APP_SECRET);
+//        String digest = SecurityUtil.getDigest(params + APP_KEY + APP_SECRET);
+        String digest = params + APP_KEY + APP_SECRET;
         String timestamp = "" + System.currentTimeMillis();
 //			String timestamp = "" + new Date().getTime();
         final List<NameValuePair> nameValueList = new ArrayList<NameValuePair>();
         // 接口调用的请求格式
         nameValueList.add(new NameValuePair("params", params));
 
-        nameValueList.add(new NameValuePair(Constants.DEFAULT_ALP_DIGEST_NAME, digest));
-        nameValueList.add(new NameValuePair(Constants.DEFAULT_ALP_TIMESTAMP_NAME, timestamp));
+        nameValueList.add(new NameValuePair(DEFAULT_ALP_DIGEST_NAME, digest));
+        nameValueList.add(new NameValuePair(DEFAULT_ALP_TIMESTAMP_NAME, timestamp));
         nameValueList.add(new NameValuePair("appkey", APP_KEY));
 
         return nameValueList;

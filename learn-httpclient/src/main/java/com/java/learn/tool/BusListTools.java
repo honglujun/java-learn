@@ -73,4 +73,5 @@ public class BusListTools<E> extends ArrayList<E> {
         }
         return resultList;
     }
+
 }
