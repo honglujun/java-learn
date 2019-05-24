@@ -11,7 +11,7 @@ public class ChocolateChip2 extends Cookie {
     }
 
     public void chomp() {
-        bite();
+        bite();//protected method
     }
 
     public static void main(String[] args) {
