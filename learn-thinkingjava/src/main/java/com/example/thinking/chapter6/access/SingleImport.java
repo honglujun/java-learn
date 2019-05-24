@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * @author win10
  */
-public class FullQualification {
+public class SingleImport {
     public static void main(String[] args) {
         ArrayList list = new ArrayList();
     }
