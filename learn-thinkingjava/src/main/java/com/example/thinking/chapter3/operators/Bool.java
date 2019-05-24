@@ -1,4 +1,4 @@
-package com.example.thinking.chapter5;
+package com.example.thinking.chapter3.operators;
 
 import java.util.Random;
 
@@ -18,3 +18,13 @@ public class Bool {
 
     }
 }
+/*Output:
+i = 58
+j = 55
+i > jtrue
+i < j false
+i >= jtrue
+i <= false
+i ==j false
+i !=j true
+ */

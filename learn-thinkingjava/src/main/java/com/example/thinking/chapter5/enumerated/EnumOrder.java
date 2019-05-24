@@ -1,4 +1,4 @@
-package com.example.thinking.chapter5;
+package com.example.thinking.chapter5.enumerated;
 
 /**
  * 编译器自动创建ordinal()方法

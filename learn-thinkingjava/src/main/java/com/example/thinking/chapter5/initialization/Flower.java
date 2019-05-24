@@ -1,4 +1,4 @@
-package com.example.thinking.chapter5;
+package com.example.thinking.chapter5.initialization;
 
 public class Flower {
     int petalCount = 0;

@@ -1,4 +1,4 @@
-package com.example.thinking.chapter5;
+package com.example.thinking.chapter4.control;
 
 public class BreakAndContinue {
     public static void main(String[] args) {

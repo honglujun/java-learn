@@ -1,5 +1,6 @@
-package com.example.thinking.chapter5;
+package com.example.thinking.chapter5.initialization;
 
+class A{}
 /**
  * 可变参数列表
  *

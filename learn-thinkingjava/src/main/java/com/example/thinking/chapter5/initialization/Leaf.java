@@ -1,4 +1,4 @@
-package com.example.thinking.chapter5;
+package com.example.thinking.chapter5.initialization;
 
 public class Leaf {
     int i = 0;

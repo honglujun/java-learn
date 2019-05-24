@@ -1,6 +1,5 @@
-package com.example.thinking.chapter5;
-
-class A {
+package com.example.thinking.chapter5.initialization;
+class B {
 }
 
 /**
@@ -24,7 +23,7 @@ public class VarArgs {
                 "one", "two", "three"
         });
         printArray(new Object[]{
-                new A(),new A(),new A()
+                new B(),new B(),new B()
         });
     }
 }

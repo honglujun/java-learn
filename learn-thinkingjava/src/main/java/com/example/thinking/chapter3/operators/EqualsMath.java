@@ -1,4 +1,4 @@
-package com.example.thinking.chapter5;
+package com.example.thinking.chapter3.operators;
 
 public class EqualsMath {
 
