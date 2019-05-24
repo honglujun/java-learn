@@ -19,3 +19,8 @@ public class ChocolateChip2 extends Cookie {
         x.chomp();
     }
 }
+/*Output:
+Cookie constructor
+Chocolate constructor
+bite
+ */
