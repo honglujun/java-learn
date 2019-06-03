@@ -8,6 +8,7 @@ class WaterSource {
         s = "Constructed";
     }
 
+    @Override
     public String toString() {
         return s;
     }
@@ -24,6 +25,7 @@ public class SprinklerSystem {
     private int i;
     private float f;
 
+    @Override
     public String toString() {
         return
                 "value1 = " + value1 + " " +
