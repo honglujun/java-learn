@@ -37,3 +37,9 @@ public class Flower {
     }
 
 }
+/*Output:
+Constructor w/ int arg only,petalCount = 47
+String & int args
+default constructor (no args)
+petalCount = 47 s = hi
+ */
