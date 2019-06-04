@@ -14,8 +14,8 @@ public class Client {
     public static void main(String[] args) throws Exception {
 
         // 通过反射拿到工厂接口类
-        FactoryAbsService mySQLFactory = (FactoryAbsService) Class.forName("com.learn.factory.abs.factory.impl.FactoryAbsMySQLServiceImpl").newInstance();
-        FactoryAbsService oracleFactory = (FactoryAbsService) Class.forName("com.learn.factory.abs.factory.impl.FactoryAbsOracleServiceImpl").newInstance();
+        FactoryAbsService mySQLFactory = (FactoryAbsService) Class.forName("com.learn.pattern.factory.abs.factory.impl.FactoryAbsMySQLServiceImpl").newInstance();
+        FactoryAbsService oracleFactory = (FactoryAbsService) Class.forName("com.learn.pattern.factory.abs.factory.impl.FactoryAbsOracleServiceImpl").newInstance();
         // 直接new拿到工厂接口类
         FactoryAbsService mySQLFactoryNew = new FactoryAbsMySQLServiceImpl();
         FactoryAbsService oracleFactoryNew = new FactoryAbsOracleServiceImpl();

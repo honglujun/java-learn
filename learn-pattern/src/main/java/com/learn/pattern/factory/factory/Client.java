@@ -12,14 +12,14 @@ public class Client {
         FactoryService addFactory = (FactoryService) Class.forName("com.learn.pattern.factory.factory.factory.impl.FactoryAddServiceImpl").newInstance();
         FactoryService subFactory=(FactoryService) Class.forName("com.learn.pattern.factory.factory.factory.impl.FactorySubServiceImpl").newInstance();
         FactoryService mulFactory=(FactoryService) Class.forName("com.learn.pattern.factory.factory.factory.impl.FactoryMulServiceImpl").newInstance();
-        FactoryService DivFactory=(FactoryService) Class.forName("com.learn.pattern.factory.factory.factory.impl.FactoryDivServiceImpl").newInstance();
+        FactoryService divFactory=(FactoryService) Class.forName("com.learn.pattern.factory.factory.factory.impl.FactoryDivServiceImpl").newInstance();
 
 
         // 通过工厂对象创建相应的实例对象
         FactoryOperationService add = addFactory.createOperation();
         FactoryOperationService sub = subFactory.createOperation();
         FactoryOperationService mul = mulFactory.createOperation();
-        FactoryOperationService div = mulFactory.createOperation();
+        FactoryOperationService div = divFactory.createOperation();
 
         System.out.println(add.getResult(1, 1));
         System.out.println(sub.getResult(1, 1));
