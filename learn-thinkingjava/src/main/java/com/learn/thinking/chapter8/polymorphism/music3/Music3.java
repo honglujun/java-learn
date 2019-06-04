@@ -91,6 +91,9 @@ class Woodwind extends Wind {
     }
 }
 
+/**
+ * @author win10
+ */
 public class Music3 {
 
     public static void tune(Instrument i) {
