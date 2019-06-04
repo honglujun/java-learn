@@ -1,4 +1,4 @@
-package com.example.cache;
+package com.learn.cache;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
