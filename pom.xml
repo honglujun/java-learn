@@ -14,6 +14,7 @@
         <module>learn-httpclient</module>
         <module>learn-thinkingjava</module>
         <module>learn-cache</module>
+        <module>learn-pattern</module>
     </modules>
 
 </project>
