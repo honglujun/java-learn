@@ -3,6 +3,8 @@ package com.learn.thinking.chapter8.polymorphism.shape;
 import java.util.Random;
 
 /**
+ * 工厂模式
+ *
  * @author win10
  */
 public class RandomShapeGenerator {

@@ -26,6 +26,7 @@ public class Music2 extends Instrument {
 
     /**
      * Stringed：有弦(乐器)的；有卷须的
+     * tune: 曲子
      *
      * @param i
      */
