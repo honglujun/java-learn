@@ -14,6 +14,9 @@ public class PrivateOverride {
 }
 
 class Derived extends PrivateOverride {
+    /**
+     * 这个就不是覆盖
+     */
     public void f() {
         System.out.println("public f()");
     }
