@@ -32,13 +32,12 @@ public class OrderOfInitialization {
         House h = new House();
         h.f();
     }
-    /**
-     * Output:
-     * Window(1)
-     * Window(2)
-     * Window(3)
-     * House
-     * Window(33)
-     * f()
-     */
 }
+/*Output:
+Window(1)
+Window(2)
+Window(3)
+House
+Window(33)
+f()
+ */
