@@ -38,17 +38,15 @@ public class ExplicitStatic {
 //    static Cups cups1 = new Cups(); // (2)
 //    static Cups cups2 = new Cups(); // (2)
 }
-/*Output:
-Inside main()
-Cup(1)
-Cup(2)
-f(99)
-
-
+/*
 无论是通过(1)的代码代码访问静态的cup1对象，还是把标(1)的行注释掉，去执行标为(2)
 的代码（即解除(2)的注释），Cups的静态初始化都会执行。如果把(1)(2)的注释都解除，
 Cups的静态初始化就不会进行
 
-
+Output:
+Inside main()
+Cup(1)
+Cup(2)
+f(99)
  */
 

@@ -41,7 +41,10 @@ public class Mugs {
         System.out.println("new Mugs(1) competed");
     }
 }
-/*Output:
+/*
+实例初始化的代码块是在构造方法之前执行的
+
+Output:
 Inside main()
 Mug(1)
 Mug(2)
@@ -53,8 +56,4 @@ Mug(2)
 mug1 & mug2 initialized
 Mugs(i)
 new Mugs(1) competed
-
-实例初始化的代码块是在构造方法之前执行的
-
-
  */
