@@ -98,16 +98,19 @@ class Amphibian extends Animal {
 
 /**
  * 青蛙继承两栖动物
+ *
  * @author win10
  */
-public class Frog extends Amphibian{
+public class Frog extends Amphibian {
     private Characteristic p = new Characteristic("Croaks");
     private Description t = new Description("Eats Bugs");
-    public Frog(){
+
+    public Frog() {
         System.out.println("Frog()");
     }
+
     @Override
-    protected void dispose(){
+    protected void dispose() {
         System.out.println("Frog dispose");
         t.dispose();
         p.dispose();
