@@ -32,12 +32,12 @@ public class RTTI {
         Useful[] x = {
                 new Useful(),
                 new MoreUseful()};
-    x[0].f();
-    x[1].g();
-    // Compile time,method not found in Useful
-    // !x[1].u();
-        ((MoreUseful)x[1]).u(); //Downcast/RTTI
-        ((MoreUseful)x[0]).u(); // ClassCastException
+        x[0].f();
+        x[1].g();
+        // Compile time,method not found in Useful
+        // !x[1].u();
+        ((MoreUseful) x[1]).u(); //Downcast/RTTI
+        ((MoreUseful) x[0]).u(); // ClassCastException
     }
 
 }

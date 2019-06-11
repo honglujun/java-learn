@@ -22,10 +22,12 @@ class SadActor extends Actor {
 
 class Stage {
     private Actor actor = new HappyActor();
-    public void change(){
+
+    public void change() {
         actor = new SadActor();
     }
-    public void performPlay(){
+
+    public void performPlay() {
         actor.act();
     }
 }
