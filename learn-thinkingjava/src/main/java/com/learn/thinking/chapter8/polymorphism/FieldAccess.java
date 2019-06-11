@@ -1,0 +1,39 @@
+package com.learn.thinking.chapter8.polymorphism;
+
+class Super {
+    public int field = 0;
+
+    public int getField() {
+        return field;
+    }
+}
+
+class Sub extends Super {
+    public int field = 1;
+
+    @Override
+    public int getField() {
+        return field;
+    }
+
+    public int getSuperField() {
+        return super.field;
+    }
+}
+
+/**
+ * @author win10
+ */
+public class FieldAccess {
+    public static void main(String[] args) {
+
+        Super sup = new Sub();
+        System.out.println("sup.field = " + sup.field + ", sup.getField() = " + sup.getField());
+        Sub sub = new Sub();
+        System.out.println("sub.field = " + sub.field + ", sub.getField() = " + sub.getField() + ", sub.getSuperField() = " + sub.getSuperField());
+    }
+}
+/*Output:
+sup.field = 0, sup.getField() = 1
+sub.field = 1, sub.getField() = 1, sub.getSuperField() = 0
+ */
