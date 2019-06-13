@@ -16,7 +16,7 @@ public interface Clibrary extends Library {
 
     Clibrary INSTANTCE = (Clibrary) Native.synchronizedLibrary(
             (Clibrary) Native.loadLibrary(
-                    Clibrary.class.getResource("/jnitest2.so")
+                    Clibrary.class.getResource("/lib.so")
                             .getPath()
                             .substring(beginIndex)
                     , Clibrary.class
@@ -30,5 +30,6 @@ public interface Clibrary extends Library {
     // 此方法为so库中的c语言函数2 -> char* Decrpyt( char * input);
     // ## 备注: 这里的char* 是c语言中的指针，与java中的String相对应
     String Decrpyt(String input);
+    void test_a();
 
 }

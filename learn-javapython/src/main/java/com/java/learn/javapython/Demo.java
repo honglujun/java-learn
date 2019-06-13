@@ -9,6 +9,9 @@ public class Demo {
 
         // 方法二
         String arr = instance.Decrpyt("方法二参数");
+        System.out.println(arr);
+        System.out.println(""+result);
+//        instance.test_a();
     }
 
 }
