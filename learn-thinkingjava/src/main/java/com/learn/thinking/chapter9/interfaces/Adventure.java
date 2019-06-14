@@ -32,9 +32,13 @@ public class Adventure {
   public static void w(ActionCharacter x) { x.fight(); }
   public static void main(String[] args) {
     Hero h = new Hero();
-    t(h); // Treat it as a CanFight
-    u(h); // Treat it as a CanSwim
-    v(h); // Treat it as a CanFly
-    w(h); // Treat it as an ActionCharacter
+    // Treat it as a CanFight
+    t(h);
+    // Treat it as a CanSwim
+    u(h);
+    // Treat it as a CanFly
+    v(h);
+    // Treat it as an ActionCharacter
+    w(h);
   }
 } ///:~
