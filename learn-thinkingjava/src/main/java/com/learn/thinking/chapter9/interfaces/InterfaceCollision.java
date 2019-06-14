@@ -47,5 +47,8 @@ class C4 extends C implements I3{
 //! class C5 extends C implements I1 {}
 //! interface I4 extends I1, I3 {} ///:~
 
+/**
+ * 在不同的接口中不要使用相同的方法名，以防止代码可读性的混乱
+ */
 public class InterfaceCollision {
 }
