@@ -16,8 +16,9 @@ public interface Clibrary extends Library {
 
     Clibrary INSTANTCE = (Clibrary) Native.synchronizedLibrary(
             (Clibrary) Native.loadLibrary(
-//                    Clibrary.class.getResource("/lib.so")
+//                    Clibrary.class.getResource("/lib.so") // 相对路径
 //                            .getPath()
+//                            .substring(beginIndex)
                     "/home/honglujun/lib.so".substring(beginIndex)
                     , Clibrary.class
             )
