@@ -6,7 +6,7 @@ public class SwingTest {
 
     public static void main(String[] args) {
         System.out.println("hello word");
-        JFrame  jFrame = new JFrame("My JFrame");
+        JFrame jFrame = new JFrame("My JFrame");
         JButton jButton = new JButton("My JButton");
         // event是ActionEvent类型，这个是通过jdk推断出来
         jButton.addActionListener(event -> {
@@ -18,5 +18,5 @@ public class SwingTest {
         jFrame.pack();
         jFrame.setVisible(true);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-}
+    }
 }

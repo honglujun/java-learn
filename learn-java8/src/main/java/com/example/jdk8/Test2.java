@@ -7,13 +7,14 @@ interface MyInterface {
     /**
      * 该方法重写了Object中的toString()方法
      * 该方法不算是抽象方法
+     *
      * @return
      */
     String toString();
 }
 
-public class Test2{
-    public void myTest(MyInterface myInterface){
+public class Test2 {
+    public void myTest(MyInterface myInterface) {
         System.out.println(1);
         myInterface.test();
         System.out.println(2);
@@ -29,14 +30,14 @@ public class Test2{
         });
         System.out.println("=============");
 
-        test2.myTest(() ->{
+        test2.myTest(() -> {
             System.out.println("myTest Lambda表达式1");
             System.out.println("myTest Lambda表达式2");
         });
 
         System.out.println("=============");
 
-        MyInterface myInterface = () ->{
+        MyInterface myInterface = () -> {
             System.out.println("hello");
         };
 
