@@ -10,6 +10,7 @@ interface MyInterface {
      *
      * @return
      */
+    @Override
     String toString();
 }
 

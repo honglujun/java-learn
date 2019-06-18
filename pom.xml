@@ -15,7 +15,7 @@
         <module>learn-thinkingjava</module>
         <module>learn-cache</module>
         <module>learn-pattern</module>
-        <module>learn-javapython</module>
+        <module>learn-javac</module>
     </modules>
 
 </project>

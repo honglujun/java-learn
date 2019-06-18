@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.java.learn</groupId>
-    <artifactId>learn-javapython</artifactId>
+    <artifactId>learn-javac</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>learn-javapython</name>
+    <name>learn-javac</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
