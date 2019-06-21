@@ -1,4 +1,4 @@
-package com.java.learn.javapython;
+package com.java.learn.javac;
 
 import com.sun.jna.Library;
 import com.sun.jna.Native;

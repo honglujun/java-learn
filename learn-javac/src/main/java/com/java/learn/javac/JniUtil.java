@@ -1,4 +1,4 @@
-package com.java.learn.javapython;
+package com.java.learn.javac;
 
 public class JniUtil {
 
