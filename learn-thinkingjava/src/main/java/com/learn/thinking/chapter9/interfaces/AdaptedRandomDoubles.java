@@ -8,6 +8,11 @@ import java.util.Scanner;
  * 适配器模式
  * 被适配的类AdapterRandomDoubles通过继承RandomDoubles类和实现Readable接口，
  * 可以生成既是RandomDoubles又是Readable的新类
+ *
+ *
+ * RandomDoubles类并没有实现Readable接口，
+ * 但是通过AdapterRandomDoubles继承RandomDoubles类，实现Readable接口
+ * 这样使得Scanner类也能作用于RandomDoubles类上
  */
 public class AdaptedRandomDoubles extends RandomDoubles implements Readable {
     private int count;
@@ -18,8 +23,10 @@ public class AdaptedRandomDoubles extends RandomDoubles implements Readable {
 
     @Override
     public int read(CharBuffer cb) throws IOException {
-        if (count-- == 0)
+        if (count-- == 0) {
             return -1;
+        }
+        // 通过继承RandomDoubles类得到的next()方法
         String result = next() + " ";
         cb.append(result);
         return result.length();
@@ -27,8 +34,8 @@ public class AdaptedRandomDoubles extends RandomDoubles implements Readable {
 
     public static void main(String[] args) {
         Scanner s = new Scanner(new AdaptedRandomDoubles(7));
-        while (s.hasNextDouble()){
-            System.out.println(s.nextDouble()+" ");
+        while (s.hasNextDouble()) {
+            System.out.println(s.nextDouble() + " ");
         }
     }
 }
