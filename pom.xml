@@ -16,6 +16,8 @@
         <module>learn-cache</module>
         <module>learn-pattern</module>
         <module>learn-javac</module>
+        <module>learnj</module>
+        <module>java-cpp</module>
     </modules>
 
 </project>
