@@ -15,32 +15,23 @@ public interface Clibrary extends Library {
      */
     int beginIndex = os != null && os.startsWith("Windows") ? 1 : 0;
 
-//    Flibrary fo = Flibrary.INSTANCE;
 
     Clibrary INSTANCE = (Clibrary) Native.synchronizedLibrary(
             (Clibrary) Native.loadLibrary(
-//                    Clibrary.class.getResource("/lib.so") // 相对路径
-//                            .getPath()
-//                            .substring(beginIndex)
+                    Clibrary.class.getResource("/test/libtest.so") // 相对路径
+                            .getPath()
+                            .substring(beginIndex)
 //                    "/home/honglujun/lib_process.so".substring(beginIndex)
-                    "/data/cvg/so/lib_process.so".substring(beginIndex)
                     , Clibrary.class
             )
     );
 
-    // 此方法为so文件中的c语言函数1 -> int test_return_C(void);
-    //  ##备注: 这里的void代表无参
-//    int test_return_C();
 
     void load_model(String weights_path);
     void detect_save(String filename, String SavePath, float thresh, Pointer[] result);
     void setPoint(int x, int y);
     int main();
     void load_network();
-
-    // 此方法为so库中的c语言函数2 -> char* Decrpyt( char * input);
-    // ## 备注: 这里的char* 是c语言中的指针，与java中的String相对应
-//    String Decrpyt(String input);
     void test_a();
 
 }
