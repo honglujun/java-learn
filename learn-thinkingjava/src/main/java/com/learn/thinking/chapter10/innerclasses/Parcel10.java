@@ -11,6 +11,7 @@ package com.learn.thinking.chapter10.innerclasses;
  */
 public class Parcel10 {
     public Destination destination(final String dest, final float price) {
+        // 实现接口
         return new Destination() {
             private int cost;
 
