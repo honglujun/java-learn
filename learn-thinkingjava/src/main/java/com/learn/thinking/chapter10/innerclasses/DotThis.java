@@ -1,7 +1,5 @@
 package com.learn.thinking.chapter10.innerclasses;
 
-import javax.sound.midi.SoundbankResource;
-
 /**
  * 使用.this关键字
  */
