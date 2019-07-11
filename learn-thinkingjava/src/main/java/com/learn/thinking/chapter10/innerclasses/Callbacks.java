@@ -48,6 +48,8 @@ class Callee2 extends MyIncrement {
 
     /**
      * 内部类实现接口
+     * 内部类Closure实现了Incrementable，用来提供一个返回Callee2的“钩子”--而且是一个安全的钩子
+     * 无论谁获得此Incrementable的引用，都只能调用increment()
      */
     private class Closure implements Incrementable {
         @Override
@@ -63,6 +65,10 @@ class Callee2 extends MyIncrement {
     }
 }
 
+/**
+ * Caller的构造器需要一个Incrementable的引用作为参数（虽然可以在任意时刻捕获回调引用），
+ * 然后在以后的某个时刻，Caller对象可以使用此引用回调Callee类。
+ */
 class Caller {
     private Incrementable callbackReference;
 
@@ -80,25 +86,38 @@ class Caller {
  */
 public class Callbacks {
     public static void main(String[] args) {
+        // Callee1直接实现了接口Incrementable，简单的解决方式
         Callee1 c1 = new Callee1();
+        Caller caller1 = new Caller(c1);
+        caller1.go();
+        caller1.go();
+        System.out.println("======================");
+
+        /**
+         * Callee2继承了MyIncrement,
+         * MyIncrement中有了与接口中相同方法名的方法increment(),
+         * MyIncrement的这个方法与接口的方法完全是不相关的。
+         * 所以如果Callee2继承了MyIncrement，
+         * 就不能为了Incrementable的用途覆盖increment()方法，
+         * 只能用内部类的方式独立的实现Incrementable接口
+         */
         Callee2 c2 = new Callee2();
         MyIncrement.f(c2);
-        Caller caller1 = new Caller(c1);
         Caller caller2 = new Caller(c2.getCallbackReference());
-        caller1.go();
-        caller1.go();
         caller2.go();
         caller2.go();
     }
 }
 /*
 Output:
-Other operation
-1
 1
 2
+======================
+Other operation
+1
 Other operation
 2
 Other operation
 3
+
  */
