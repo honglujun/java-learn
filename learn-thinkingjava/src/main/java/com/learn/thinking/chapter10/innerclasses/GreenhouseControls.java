@@ -145,7 +145,7 @@ public class GreenhouseControls extends Controller {
      * An example of an action() that insert a new one of itself into the event list
      *
      * action()方法的一个示例，将新new的自己的一个对象插入到事件列表eventList中,
-     * 使得在Controller中在将响铃事件结束后还有8个事件,
+     * 使得在Controller中在将响铃事件结束后还有8个事件（为什么是8个，请debug看的清楚一些）,
      * (最开始就有8个事件，但是在Bell事件的action()是new一个新的Bell事件放在eventList中，这样就有9个事件了，然后这个事件结束会remove()掉一个Bell，所以有8个)
      * 也就是说本来8个eventList中的事件，应该会变成7个，但是在本事件中的action()是添加一个本事件Bell，所以本事件结束后还有8个，
      * 这样造成的结果就是，因为初始化(GreenhouseController)的gc.addEvent(gc.new Bell(900))原因，初始化只加了一次响铃Bell，所以后续需要再加，
