@@ -12,6 +12,8 @@ public class Controller {
 
     /**
      * run()方法循环遍历eventList，寻找就绪的（ready()）、要运行的Event对象。
+     *
+     * 启动main方法的时候会一直跑的原因不是别的，就是Restart内部类
      */
     public void run() {
         while (eventList.size() > 0) {
