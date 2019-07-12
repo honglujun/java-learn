@@ -143,7 +143,17 @@ public class GreenhouseControls extends Controller {
     /**
      * 控制响铃
      * An example of an action() that insert a new one of itself into the event list
-     * action()方法的一个示例，将新new的自己的一个对象插入到事件列表中
+     *
+     * action()方法的一个示例，将新new的自己的一个对象插入到事件列表eventList中,
+     * 使得在Controller中在将响铃事件结束后还有8个事件,
+     * (最开始就有8个事件，但是在Bell事件的action()是new一个新的Bell事件放在eventList中，这样就有9个事件了，然后这个事件结束会remove()掉一个Bell，所以有8个)
+     * 也就是说本来8个eventList中的事件，应该会变成7个，但是在本事件中的action()是添加一个本事件Bell，所以本事件结束后还有8个，
+     * 这样造成的结果就是，因为初始化(GreenhouseController)的gc.addEvent(gc.new Bell(900))原因，初始化只加了一次响铃Bell，所以后续需要再加，
+     *
+     * 而其他的事件在初始化（Controller）的时候是通过Event[] events向Restart的private Event[] events中添加。
+     * 所以Restart的private Event[] events会一直有其他的事件（即只要初始化一次，在这个数组中就一直存在）
+     *
+     * 当然Bell也可以这样做，那就要修改一下Bell的内部类，把action()方法改成跟其他的事件的内部类的action()方法那样，就可以在初始化（Controller）的时候加到数组里面
      */
     public class Bell extends Event {
 
@@ -166,12 +176,12 @@ public class GreenhouseControls extends Controller {
      * 重启系统
      */
     public class Restart extends Event {
-        private Event[] eventList;
+        private Event[] events;
 
-        public Restart(long delayTime, Event[] eventList) {
+        public Restart(long delayTime, Event[] events) {
             super(delayTime);
-            this.eventList = eventList;
-            for (Event e : eventList) {
+            this.events = events;
+            for (Event e : events) {
                 addEvent(e);
             }
         }
@@ -179,11 +189,11 @@ public class GreenhouseControls extends Controller {
         /**
          * 由Event对象组成的数组交给Restart，该数组要加到控制器上，
          * 由于Restart()也是一个Event对象，所以同样要加到Restart.action()中，
-         * 是系统有规律的重启自己
+         * 使系统有规律的重启自己
          */
         @Override
         public void action() {
-            for (Event e : eventList) {
+            for (Event e : events) {
                 // rerun each event--重新运行每个event
                 e.start();
                 addEvent(e);
