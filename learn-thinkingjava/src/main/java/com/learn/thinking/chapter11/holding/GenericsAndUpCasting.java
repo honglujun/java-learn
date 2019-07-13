@@ -17,7 +17,7 @@ class Braeburn extends Apple {
 /**
  * 可以将Apple的子类型添加到指定为保存Apple对象的容器中
  */
-public class GenericsAndUpcasting {
+public class GenericsAndUpCasting {
     public static void main(String[] args) {
         ArrayList<Apple> apples = new ArrayList<>();
         apples.add(new GrannySmith());
