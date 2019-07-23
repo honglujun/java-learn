@@ -27,7 +27,7 @@ public class ApplesAndOrangesWithoutGenerics {
         }
         apples.add(new Orange());
         for (int i = 0; i < apples.size(); i++) {
-            ((Apple)apples.get(i)).id();
+            ((Apple) apples.get(i)).id();
         }
     }
 }
