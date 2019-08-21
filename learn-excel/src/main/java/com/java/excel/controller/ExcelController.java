@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +20,7 @@ import java.util.List;
 public class ExcelController {
     /**
      * 将user表导出到Excel表
+     *
      * @return
      */
     @GetMapping(value = "/exportExcel")
@@ -30,7 +30,7 @@ public class ExcelController {
 //        List<User> userList = userService.listUser();
         List<UserVo> userVOList = new ArrayList<UserVo>();
         //将 userList 拷贝到 userVOList 中
-        for(int i=0; i<3; i++) {
+        for (int i = 0; i < 3; i++) {
             UserVo userVO = new UserVo();
             userVO.setAge(i);
             userVO.setName("张三");
@@ -39,7 +39,7 @@ public class ExcelController {
         }
 
         ExcelUtil2<UserVo> util = new ExcelUtil2<UserVo>(UserVo.class);// 创建工具类.
-        util.exportExcel(response,userVOList, "用户信息", 65536, "输出");// 导出
+        util.exportExcel(response, userVOList, "用户信息", 65536, "输出.xlsx");// 导出
         System.out.println("----执行完毕----------");
         return "success";
     }
@@ -49,7 +49,7 @@ public class ExcelController {
     public String importExcel() {
         FileInputStream fis = null;
         try {
-            fis = new FileInputStream("d:/demo2.xls");
+            fis = new FileInputStream("d:/demo2.xlsx");
             ExcelUtil2<UserVo> util = new ExcelUtil2<UserVo>(
                     UserVo.class);
             // 创建excel工具类，返回Excel中的数据
@@ -57,10 +57,10 @@ public class ExcelController {
             System.out.println(userVOList);
             //将userVOList 转成 userList
             List<User> userList = new ArrayList<User>();
-            for(int i = 0; i < userVOList.size(); i++) {
+            for (int i = 0; i < userVOList.size(); i++) {
                 User user = new User();
                 UserVo userVO = userVOList.get(i);
-                BeanUtils.copyProperties(userVO,user);
+                BeanUtils.copyProperties(userVO, user);
                 userList.add(user);
                 System.out.println(user);
             }

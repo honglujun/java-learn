@@ -9,6 +9,7 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -28,28 +29,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author 言曌
- * @date 2017/12/24 下午9:08
- */
-/*
- * ExcelUtil工具类实现功能:
- * 导出时传入list<T>,即可实现导出为一个excel,其中每个对象Ｔ为Excel中的一条记录.
- * 导入时读取excel,得到的结果是一个list<T>.T是自己定义的对象.
- * 需要导出的实体对象只需简单配置注解就能实现灵活导出,通过注解您可以方便实现下面功能:
- * 1.实体属性配置了注解就能导出到excel中,每个属性都对应一列.
- * 2.列名称可以通过注解配置.
- * 3.导出到哪一列可以通过注解配置.
- * 4.鼠标移动到该列时提示信息可以通过注解配置.
- * 5.用注解设置只能下拉选择不能随意填写功能.
- * 6.用注解设置是否只导出标题而不导出内容,这在导出内容作为模板以供用户填写时比较实用.
- * 本工具类以后可能还会加功能,请关注我的博客: http://blog.csdn.net/lk_blog
- */
 public class ExcelUtil2<T> {
     Class<T> clazz;
+
     public ExcelUtil2(Class<T> clazz) {
         this.clazz = clazz;
     }
+
     /**
      * 2003- 版本的excel
      **/
@@ -116,38 +102,39 @@ public class ExcelUtil2<T> {
                             continue;
                         }
                         String value = "";
-//                        switch (cell.getCellType()) {
-//                            case HSSFCell.CELL_TYPE_NUMERIC: // 数字
-//                                //如果为时间格式的内容
-//                                if (HSSFDateUtil.isCellDateFormatted(cell)) {
-//                                    //注：format格式 yyyy-MM-dd hh:mm:ss 中小时为12小时制，若要24小时制，则把小h变为H即可，yyyy-MM-dd HH:mm:ss
-//                                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-//                                    value = sdf.format(HSSFDateUtil.getJavaDate(cell.
-//                                            getNumericCellValue())).toString();
-//                                    break;
-//                                } else {
-//                                    value = new DecimalFormat("0").format(cell.getNumericCellValue());
-//                                }
-//                                break;
-//                            case HSSFCell.CELL_TYPE_STRING: // 字符串
-//                                value = cell.getStringCellValue();
-//                                break;
-//                            case HSSFCell.CELL_TYPE_BOOLEAN: // Boolean
-//                                value = cell.getBooleanCellValue() + "";
-//                                break;
-//                            case HSSFCell.CELL_TYPE_FORMULA: // 公式
-//                                value = cell.getCellFormula() + "";
-//                                break;
-//                            case HSSFCell.CELL_TYPE_BLANK: // 空值
-//                                value = "";
-//                                break;
-//                            case HSSFCell.CELL_TYPE_ERROR: // 故障
-//                                value = "非法字符";
-//                                break;
-//                            default:
-//                                value = "未知类型";
-//                                break;
-//                        }
+                        CellType cellType = cell.getCellType();
+                        switch (cellType) {
+                            case NUMERIC: // 数字
+                                //如果为时间格式的内容
+                                if (HSSFDateUtil.isCellDateFormatted(cell)) {
+                                    //注：format格式 yyyy-MM-dd hh:mm:ss 中小时为12小时制，若要24小时制，则把小h变为H即可，yyyy-MM-dd HH:mm:ss
+                                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                                    value = sdf.format(HSSFDateUtil.getJavaDate(cell.
+                                            getNumericCellValue())).toString();
+                                    break;
+                                } else {
+                                    value = new DecimalFormat("0").format(cell.getNumericCellValue());
+                                }
+                                break;
+                            case STRING: // 字符串
+                                value = cell.getStringCellValue();
+                                break;
+                            case BOOLEAN: // Boolean
+                                value = cell.getBooleanCellValue() + "";
+                                break;
+                            case FORMULA: // 公式
+                                value = cell.getCellFormula() + "";
+                                break;
+                            case BLANK: // 空值
+                                value = "";
+                                break;
+                            case ERROR: // 故障
+                                value = "非法字符";
+                                break;
+                            default:
+                                value = "未知类型";
+                                break;
+                        }
                         System.out.println(value);
                         if (value.equals("")) {
                             continue;
@@ -194,20 +181,18 @@ public class ExcelUtil2<T> {
             e.printStackTrace();
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return list;
     }
+
     /**
      * 对list数据源将其里面的数据导入到excel表单
      *
-     * @param sheetName
-     *            工作表的名称
-     * @param sheetSize
-     *            每个sheet中数据的行数,此数值必须小于65536
-     * @param fileName
-     *            excel名称
+     * @param sheetName 工作表的名称
+     * @param sheetSize 每个sheet中数据的行数,此数值必须小于65536
+     * @param fileName  excel名称
      */
     public boolean exportExcel(HttpServletResponse response, List<T> list, String sheetName, int sheetSize,
                                String fileName) {
@@ -293,6 +278,7 @@ public class ExcelUtil2<T> {
             return false;
         }
     }
+
     /**
      * 将EXCEL中A,B,C,D,E列映射成0,1,2,3
      *
@@ -308,23 +294,17 @@ public class ExcelUtil2<T> {
         }
         return count;
     }
+
     /**
      * 设置单元格上提示
      *
-     * @param sheet
-     *            要设置的sheet.
-     * @param promptTitle
-     *            标题
-     * @param promptContent
-     *            内容
-     * @param firstRow
-     *            开始行
-     * @param endRow
-     *            结束行
-     * @param firstCol
-     *            开始列
-     * @param endCol
-     *            结束列
+     * @param sheet         要设置的sheet.
+     * @param promptTitle   标题
+     * @param promptContent 内容
+     * @param firstRow      开始行
+     * @param endRow        结束行
+     * @param firstCol      开始列
+     * @param endCol        结束列
      * @return 设置好的sheet.
      */
     public static HSSFSheet setHSSFPrompt(HSSFSheet sheet, String promptTitle,
@@ -343,21 +323,16 @@ public class ExcelUtil2<T> {
         sheet.addValidationData(data_validation_view);
         return sheet;
     }
+
     /**
      * 设置某些列的值只能输入预制的数据,显示下拉框.
      *
-     * @param sheet
-     *            要设置的sheet.
-     * @param textlist
-     *            下拉框显示的内容
-     * @param firstRow
-     *            开始行
-     * @param endRow
-     *            结束行
-     * @param firstCol
-     *            开始列
-     * @param endCol
-     *            结束列
+     * @param sheet    要设置的sheet.
+     * @param textlist 下拉框显示的内容
+     * @param firstRow 开始行
+     * @param endRow   结束行
+     * @param firstCol 开始列
+     * @param endCol   结束列
      * @return 设置好的sheet.
      */
     public static HSSFSheet setHSSFValidation(HSSFSheet sheet,
