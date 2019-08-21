@@ -17,6 +17,7 @@
         <module>learn-pattern</module>
         <module>learn-javac</module>
         <module>java-cpp</module>
+        <module>learn-excel</module>
     </modules>
 
 </project>
