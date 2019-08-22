@@ -37,9 +37,8 @@ public class ExcelController {
             userVO.setPassWord("123");
             userVOList.add(userVO);
         }
-
-        ExcelUtil2<UserVo> util = new ExcelUtil2<UserVo>(UserVo.class);// 创建工具类.
-        util.exportExcel(response, userVOList, "用户信息", 65536, "输出.xlsx");// 导出
+        // 导出
+        ExcelUtil2.exportExcel(response, userVOList, "用户信息", 65536, "输出.xlsx",UserVo.class);
         System.out.println("----执行完毕----------");
         return "success";
     }
@@ -50,10 +49,9 @@ public class ExcelController {
         FileInputStream fis = null;
         try {
             fis = new FileInputStream("d:/demo2.xlsx");
-            ExcelUtil2<UserVo> util = new ExcelUtil2<UserVo>(
-                    UserVo.class);
             // 创建excel工具类，返回Excel中的数据
-            List<UserVo> userVOList = util.importExcel("用户信息", fis);// 导入
+            // 导入
+            List<UserVo> userVOList = ExcelUtil2.importExcel("用户信息", fis,UserVo.class);
             System.out.println(userVOList);
             //将userVOList 转成 userList
             List<User> userList = new ArrayList<User>();

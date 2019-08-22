@@ -14,6 +14,10 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddressList;
+import org.apache.poi.xssf.streaming.SXSSFCell;
+import org.apache.poi.xssf.streaming.SXSSFRow;
+import org.apache.poi.xssf.streaming.SXSSFSheet;
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import javax.servlet.http.HttpServletResponse;
@@ -32,11 +36,6 @@ import java.util.Map;
 import static org.apache.poi.ss.usermodel.CellType.STRING;
 
 public class ExcelUtil2<T> {
-    Class<T> clazz;
-
-    public ExcelUtil2(Class<T> clazz) {
-        this.clazz = clazz;
-    }
 
     /**
      * 2003- 版本的excel
@@ -51,11 +50,12 @@ public class ExcelUtil2<T> {
     /**
      * 获取--Excel工作薄
      *
-     * @param inStr,fileName
+     * @param inStr 输入流
+     * @param fileType excel的类型.xls或者.xlsx
      * @return
      * @throws Exception
      */
-    public Workbook getWorkbook(InputStream inStr, String fileType) throws Exception {
+    public static Workbook getWorkbook(InputStream inStr, String fileType) throws Exception {
         Workbook wb;
         if (EXCEL_XLS.equals(fileType)) {
             //2003-
@@ -69,9 +69,10 @@ public class ExcelUtil2<T> {
         return wb;
     }
 
-    public List<T> importExcel(String sheetName, InputStream input) {
+    public static <T> List<T> importExcel(String sheetName, InputStream input,Class<T> clazz) {
         List<T> list = new ArrayList<T>();
         try {
+            // 获取工作簿
             Workbook workbook = getWorkbook(input, EXCEL_XLSX);
             Sheet sheet = workbook.getSheet(sheetName);
             if (!sheetName.trim().equals("")) {
@@ -213,8 +214,7 @@ public class ExcelUtil2<T> {
      * @param sheetSize 每个sheet中数据的行数,此数值必须小于65536
      * @param fileName  excel名称
      */
-    public boolean exportExcel(HttpServletResponse response, List<T> list, String sheetName, int sheetSize,
-                               String fileName) {
+    public static <T> boolean exportExcel(HttpServletResponse response, List<T> list, String sheetName, int sheetSize, String fileName,Class<T> clazz) {
         // 得到所有定义字段
         Field[] allFields = clazz.getDeclaredFields();
         List<Field> fields = new ArrayList<Field>();
@@ -225,7 +225,8 @@ public class ExcelUtil2<T> {
             }
         }
         // 产生工作薄对象
-        HSSFWorkbook workbook = new HSSFWorkbook();
+        SXSSFWorkbook workbook = new SXSSFWorkbook();
+        workbook.setCompressTempFiles(true);
         // excel2003中每个sheet中最多有65536行,为避免产生错误所以加这个逻辑.
         if (sheetSize > 65536 || sheetSize < 1) {
             sheetSize = 65536;
@@ -234,16 +235,16 @@ public class ExcelUtil2<T> {
         double sheetNo = Math.ceil(list.size() / sheetSize);
         for (int index = 0; index <= sheetNo; index++) {
             // 产生工作表对象
-            HSSFSheet sheet = workbook.createSheet();
+            SXSSFSheet sheet = workbook.createSheet();
             if (sheetNo == 0) {
                 workbook.setSheetName(index, sheetName);
             } else {
                 // 设置工作表的名称.
                 workbook.setSheetName(index, sheetName + index);
             }
-            HSSFRow row;
+            SXSSFRow row;
             // 产生单元格
-            HSSFCell cell;
+            SXSSFCell cell;
             // 产生一行
             row = sheet.createRow(0);
             // 写入各个字段的列头名称
@@ -301,7 +302,7 @@ public class ExcelUtil2<T> {
             }
         }
         try {
-            this.setResponseHeader(response, fileName);
+            setResponseHeader(response, fileName);
             OutputStream os = response.getOutputStream();
             workbook.write(os);
             os.flush();
@@ -342,7 +343,7 @@ public class ExcelUtil2<T> {
      * @param endCol        结束列
      * @return 设置好的sheet.
      */
-    public static HSSFSheet setHSSFPrompt(HSSFSheet sheet, String promptTitle,
+    public static SXSSFSheet setHSSFPrompt(SXSSFSheet sheet, String promptTitle,
                                           String promptContent, int firstRow, int endRow, int firstCol,
                                           int endCol) {
         // 构造constraint对象
@@ -370,7 +371,7 @@ public class ExcelUtil2<T> {
      * @param endCol   结束列
      * @return 设置好的sheet.
      */
-    public static HSSFSheet setHSSFValidation(HSSFSheet sheet,
+    public static SXSSFSheet setHSSFValidation(SXSSFSheet sheet,
                                               String[] textlist, int firstRow, int endRow, int firstCol,
                                               int endCol) {
         // 加载下拉列表内容
@@ -392,7 +393,7 @@ public class ExcelUtil2<T> {
      * @param response
      * @param fileName
      */
-    public void setResponseHeader(HttpServletResponse response, String fileName) {
+    public static void setResponseHeader(HttpServletResponse response, String fileName) {
         try {
             try {
                 fileName = new String(fileName.getBytes(), "ISO8859-1");
