@@ -71,6 +71,13 @@
             <artifactId>commons-collections4</artifactId>
             <version>4.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>net.sf.jxls</groupId>
+            <artifactId>jxls-core</artifactId>
+            <version>1.0.5</version>
+        </dependency>
+
     </dependencies>
 
     <build>

@@ -2,11 +2,8 @@ package com.java.excel.util;
 
 import com.java.excel.vo.ExcelVOAttribute;
 import org.apache.poi.hssf.usermodel.DVConstraint;
-import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFDataValidation;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
@@ -37,6 +34,12 @@ import static org.apache.poi.ss.usermodel.CellType.STRING;
 
 public class ExcelUtil2<T> {
 
+//    Class<T> clazz;
+//
+//    public ExcelUtil2(Class<T> clazz) {
+//        this.clazz = clazz;
+//    }
+
     /**
      * 2003- 版本的excel
      **/
@@ -50,7 +53,7 @@ public class ExcelUtil2<T> {
     /**
      * 获取--Excel工作薄
      *
-     * @param inStr 输入流
+     * @param inStr    输入流
      * @param fileType excel的类型.xls或者.xlsx
      * @return
      * @throws Exception
@@ -69,7 +72,16 @@ public class ExcelUtil2<T> {
         return wb;
     }
 
-    public static <T> List<T> importExcel(String sheetName, InputStream input,Class<T> clazz) {
+    /**
+     * 导入
+     *
+     * @param sheetName
+     * @param input
+     * @param clazz
+     * @param <T>
+     * @return
+     */
+    public static <T> List<T> importExcel(String sheetName, InputStream input, Class<T> clazz) {
         List<T> list = new ArrayList<T>();
         try {
             // 获取工作簿
@@ -214,7 +226,7 @@ public class ExcelUtil2<T> {
      * @param sheetSize 每个sheet中数据的行数,此数值必须小于65536
      * @param fileName  excel名称
      */
-    public static <T> boolean exportExcel(HttpServletResponse response, List<T> list, String sheetName, int sheetSize, String fileName,Class<T> clazz) {
+    public static <T> boolean exportExcel(HttpServletResponse response, List<T> list, String sheetName, int sheetSize, String fileName, Class<T> clazz) {
         // 得到所有定义字段
         Field[] allFields = clazz.getDeclaredFields();
         List<Field> fields = new ArrayList<Field>();
@@ -224,7 +236,8 @@ public class ExcelUtil2<T> {
                 fields.add(field);
             }
         }
-        // 产生工作薄对象
+        // 产生工作薄对象.xlsx格式的
+        // 若要导出.xls格式的用 HSSFWorkbook workbook = new HSSFWorkbook();其他的类也要相应的改动
         SXSSFWorkbook workbook = new SXSSFWorkbook();
         workbook.setCompressTempFiles(true);
         // excel2003中每个sheet中最多有65536行,为避免产生错误所以加这个逻辑.
@@ -344,8 +357,8 @@ public class ExcelUtil2<T> {
      * @return 设置好的sheet.
      */
     public static SXSSFSheet setHSSFPrompt(SXSSFSheet sheet, String promptTitle,
-                                          String promptContent, int firstRow, int endRow, int firstCol,
-                                          int endCol) {
+                                           String promptContent, int firstRow, int endRow, int firstCol,
+                                           int endCol) {
         // 构造constraint对象
         DVConstraint constraint = DVConstraint
                 .createCustomFormulaConstraint("DD1");
@@ -372,8 +385,8 @@ public class ExcelUtil2<T> {
      * @return 设置好的sheet.
      */
     public static SXSSFSheet setHSSFValidation(SXSSFSheet sheet,
-                                              String[] textlist, int firstRow, int endRow, int firstCol,
-                                              int endCol) {
+                                               String[] textlist, int firstRow, int endRow, int firstCol,
+                                               int endCol) {
         // 加载下拉列表内容
         DVConstraint constraint = DVConstraint
                 .createExplicitListConstraint(textlist);

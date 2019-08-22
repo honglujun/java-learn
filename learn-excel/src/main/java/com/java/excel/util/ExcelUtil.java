@@ -147,8 +147,10 @@ public class ExcelUtil {
         if (null == sheet) {
             return null;
         }
-        Row row = null;      //行数，行数据
-        Cell cell = null;    //列数, 单元格
+        //行数，行数据
+        Row row = null;
+        //列数, 单元格
+        Cell cell = null;
         // 遍历所有的数据
         List<CellVO> list = new ArrayList<>();
         for (int j = sheet.getFirstRowNum(); j <= sheet.getLastRowNum(); j++) {
