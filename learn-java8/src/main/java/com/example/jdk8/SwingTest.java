@@ -1,6 +1,7 @@
 package com.example.jdk8;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 
 public class SwingTest {
 
