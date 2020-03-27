@@ -35,7 +35,7 @@ public class Test1 {
         });
         System.out.println("=================");
 
-        // method reference 方法引用的方式创建函数式接口的实现
+        // method reference 方法引用的方式创建函数式编程接口的实现
         list.forEach(System.out::println);
     }
 }
