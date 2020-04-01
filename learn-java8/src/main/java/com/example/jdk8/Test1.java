@@ -26,7 +26,7 @@ public class Test1 {
             @Override
             public void accept(Integer integer) {
                 System.out.println(integer);
-            }
+        }
         });
         System.out.println("=================");
 
