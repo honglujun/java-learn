@@ -9,12 +9,21 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
+    mavenLocal()
+    maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+    maven { url 'https://repo.spring.io/plugins-release' }
     mavenCentral()
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    // https://mvnrepository.com/artifact/junit/junit
+    testCompile group: 'junit', name: 'junit', version: '4.13'
+
     // https://mvnrepository.com/artifact/com.google.guava/guava
     compile group: 'com.google.guava', name: 'guava', version: '28.2-jre'
+    // https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-ant
+    compile group: 'org.codehaus.groovy', name: 'groovy-ant', version: '2.5.10'
+    compile group: 'com.github.jnr', name: 'jffi', version: '1.2.23'
+
 
 }

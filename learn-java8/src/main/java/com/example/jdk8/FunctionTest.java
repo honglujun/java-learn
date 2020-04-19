@@ -23,9 +23,6 @@ public class FunctionTest {
 
     }
 
-
-
-
     public int compute(int a, Function<Integer, Integer> function) {
         int result = function.apply(a);
 

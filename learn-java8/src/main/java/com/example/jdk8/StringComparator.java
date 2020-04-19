@@ -3,6 +3,7 @@ package com.example.jdk8;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class StringComparator {
@@ -24,6 +25,7 @@ public class StringComparator {
         // statement {return o2.compareTo(o1);}
 
         Collections.sort(names, (o1, o2) -> {return o2.compareTo(o1);});
+        Collections.sort(names, Comparator.reverseOrder());
 
         System.out.println(names);
 
